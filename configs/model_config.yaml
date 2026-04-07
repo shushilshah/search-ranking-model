@@ -1,0 +1,57 @@
+# Central config for the search ranking model
+
+data:
+  raw_path: data/raw/queries_docs.csv
+  features_path: data/features/feature_matrix.csv
+  test_size: 0.15
+  val_size: 0.15
+  random_seed: 42
+
+features:
+  text_features:
+    - bm25_score
+    - tfidf_cosine
+    - query_term_coverage
+    - title_match_score
+    - body_match_score
+  doc_features:
+    - doc_length
+    - doc_pagerank
+    - doc_freshness_days
+    - avg_click_rate
+  query_features:
+    - query_length
+    - query_idf_sum
+    - is_navigational
+
+model:
+  ltr_mode: listwise
+
+  # XGBoost params
+  objective: rank:ndcg
+  eval_metric: ndcg@10
+  n_estimators: 500
+  learning_rate: 0.05
+  max_depth: 6
+  min_child_weight: 5
+  subsample: 0.8
+  colsample_bytree: 0.8
+  reg_alpha: 0.1
+  reg_lambda: 1.0
+  early_stopping_rounds: 30
+  verbosity: 1
+
+tuning:
+  enabled: false
+  n_trials: 50
+  metric: ndcg@10
+  direction: maximize
+
+evaluation:
+  k_values: [1, 3, 5, 10]
+  primary_metric: ndcg@10
+
+output:
+  model_path: outputs/model.json
+  report_path: outputs/eval_report.json
+  feature_importance_plot: outputs/feature_importance.png
