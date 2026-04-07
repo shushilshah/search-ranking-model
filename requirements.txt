@@ -1,0 +1,16 @@
+xgboost
+scikit-learn
+pandas
+numpy
+optuna
+scipy
+fastapi
+shap
+uvicorn
+rank-bm25
+pydantic
+pyYAML
+matplotlib
+seaborn
+jupyter
+pytest
