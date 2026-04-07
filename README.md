@@ -22,26 +22,6 @@ search_ranking/
 └── outputs/            # Saved models, reports
 ```
 
-## Quickstart
-
-```bash
-pip install -r requirements.txt
-
-# 1. Generate or load data
-python src/data/generate_sample_data.py
-
-# 2. Build features
-python src/features/feature_pipeline.py
-
-# 3. Train model
-python src/models/train.py --config configs/model_config.yaml
-
-# 4. Evaluate
-python src/evaluation/evaluate.py --model outputs/model.json
-
-# 5. Serve (optional)
-uvicorn src.serving.api:app --reload
-```
 
 ## LTR approaches included
 
