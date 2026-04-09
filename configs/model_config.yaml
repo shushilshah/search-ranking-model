@@ -52,6 +52,6 @@ evaluation:
   primary_metric: ndcg@10
 
 output:
-  model_path: outputs/model.json
+  model_path: outputs/model_pointwise.json
   report_path: outputs/eval_report.json
   feature_importance_plot: outputs/feature_importance.png
