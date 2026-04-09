@@ -1,0 +1,11 @@
+{
+  "ndcg@1": 1.0,
+  "ndcg@3": 1.0,
+  "ndcg@5": 0.9698838892393749,
+  "ndcg@10": 0.9749981324205479,
+  "mrr": 1.0,
+  "map": 0.9579054931996108,
+  "model_type": "pairwise",
+  "objective": "rank:pairwise",
+  "n_features": 12
+}
