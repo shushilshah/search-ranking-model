@@ -1,0 +1,38 @@
+# configs/experiments.yaml
+# Define A/B experiments here. Each experiment lists variants with
+# traffic fractions (must sum to 1.0) and the metrics to track.
+
+experiments:
+  - name: exp_ltr_v2
+    description: "LambdaMART listwise (v2) vs baseline pointwise model"
+    active: true
+    metrics:
+      - ctr
+      - conversion_rate
+      - mrr
+      - avg_dwell_seconds
+    variants:
+      - name: control
+        traffic_fraction: 0.5
+        model_path: outputs/model_pointwise.json
+        description: "Pointwise XGBoost baseline"
+      - name: treatment
+        traffic_fraction: 0.5
+        model_path: outputs/model_listwise.json
+        description: "LambdaMART listwise (rank:ndcg)"
+
+  - name: exp_feature_freshness
+    description: "Does adding doc_freshness_score improve ranking?"
+    active: false
+    metrics:
+      - ctr
+      - mrr
+    variants:
+      - name: control
+        traffic_fraction: 0.5
+        model_path: outputs/model_no_freshness.json
+        description: "Model without freshness feature"
+      - name: treatment
+        traffic_fraction: 0.5
+        model_path: outputs/model_with_freshness.json
+        description: "Model with freshness feature"
